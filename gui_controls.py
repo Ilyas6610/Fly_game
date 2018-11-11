@@ -1,5 +1,5 @@
 from multiprocessing import Process
-import messages
+import aaaaaaa.messages as messages
 from pyglet.window import key as pygletkey
 
 

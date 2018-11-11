@@ -1,11 +1,11 @@
 import pyglet
-from view import Renderer
-from messages import Messenger
-import messages
-from gui_controls import GUIcontrols
-from ai_controls import AIcontrols
-from objects import Objects
-from obj_def import *
+from aaaaaaa.view import Renderer
+from aaaaaaa.messages import *
+import aaaaaaa.messages as messages
+from aaaaaaa.gui_controls import GUIcontrols
+from aaaaaaa.ai_controls import AIcontrols
+from aaaaaaa.objects import Objects
+from aaaaaaa.obj_def import *
 
 class GameState:
     Start, ActiveGame, Menu, Exit, Pause = range(5)
@@ -86,7 +86,7 @@ class Game:
                          ObjectType.Bot2: [],
                          ObjectType.Player2: []}
         configuration[ObjectType.FieldSize].append(battle_field_size)
-        configuration[ObjectType.Player1].append((500, 50))
+        #configuration[ObjectType.Player1].append((500, 50))
         #configuration[ObjectType.Player2].append((500, 450))
         configuration[ObjectType.Bot2].append((500, 450))
 

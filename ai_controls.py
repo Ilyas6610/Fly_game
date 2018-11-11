@@ -1,9 +1,13 @@
 from multiprocessing import Process
-import messages
+from aaaaaaa.messages import *
 import pyglet
-from obj_def import *
+import aaaaaaa.messages as messages
+from aaaaaaa.obj_def import *
 from random import *
 from pyglet.window import key as pygletkey
+
+from keras.models import load_model
+model = load_model('model')
 
 class AIcontrolsState:
     Start, Run, Exit = range(3)
@@ -45,8 +49,14 @@ class AIcontrols(Process):
         if self.ai_state == AIcontrolsState.Run and self.objects_copy is not None:
             for index in range(0, ObjectType.ObjArrayTotal):
                 if self.objects_copy[index][ObjectProp.ObjType] == ObjectType.Bot2:
-                    pressed = 0
-                    if self.objects_copy[index][ObjectProp.Velocity] < 20:
-                        pressed = random() * 2 - 0.5
-                    key = randint(1, 4)
-                    self.messenger.bot2_set_pressed_key(pressed, key)
+                    pressed = 1
+                    x = self.objects_copy[index][ObjectProp.Xcoord]
+                    y = self.objects_copy[index][ObjectProp.Ycoord]
+                    dir = self.objects_copy[index][ObjectProp.Dir]
+                    x = np.array([[x / 1000, y / 1000, dir / 360],[x / 1000, y / 1000, dir / 360]], np.float32)
+                    X = x[0:1, 0:3]
+
+                    predictions = model.predict(X)
+                    res = (predictions[0][0])
+                    #print(res)
+                    self.messenger.bot2_set_pressed_key(pressed, round(res))

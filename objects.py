@@ -1,9 +1,9 @@
 from multiprocessing import Process
 import pyglet
 import math
-import messages
+import aaaaaaa.messages as messages
 from pyglet.window import key as pygletkey
-from obj_def import *
+from aaaaaaa.obj_def import *
 
 alpha = 60
 range_of_atack = 1000
@@ -125,14 +125,16 @@ class Objects(Process):
     def set_bot_pressed_key2(self, pushed, key):
         objects = self.objects.get_objects(link_only=True)
         offset = ObjectType.offsets[ObjectType.Bot2][0]
-        if key == 1:
-            objects[offset][ObjectProp.K_up] = pushed
-        elif key == 2:
-            objects[offset][ObjectProp.K_down] = pushed
-        elif key == 3:
-            objects[offset][ObjectProp.K_right] = pushed
-        elif key == 4:
+        print(objects[offset])
+        objects[offset][ObjectProp.Velocity] = 80
+        if key == 0:
             objects[offset][ObjectProp.K_left] = pushed
+
+            objects[offset][ObjectProp.K_right] = 0
+        elif key == 1:
+            objects[offset][ObjectProp.K_right] = pushed
+
+            objects[offset][ObjectProp.K_left] = 0
 
     def check_kill(self):
         objects = self.objects.get_objects(link_only=True)

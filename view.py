@@ -1,5 +1,5 @@
 import pyglet
-from obj_def import *
+from aaaaaaa.obj_def import *
 
 class RendererState:
     Start, Pause, Game, Menu, Exit = range(5)
